@@ -70,7 +70,7 @@ namespace Etc
 		auto mipWidth = a_uiSourceWidth;
 		auto mipHeight = a_uiSourceHeight;
 		int totalEncodingTime = 0;
-		for(unsigned int mip = 0; mip < a_uiMaxMipmaps && mipWidth >= 1 && mipHeight >= 1; mip++)
+		for(unsigned int mip = 0; mip < a_uiMaxMipmaps && (mipWidth >= 1 || mipHeight >= 1); mip++)
 		{
 			float* pImageData = nullptr;
 			float* pMipImage = nullptr;
@@ -114,8 +114,14 @@ namespace Etc
 				break;
 			}
 
-			mipWidth >>= 1;
-			mipHeight >>= 1;
+            if (mipWidth > 1)
+            {
+                mipWidth >>= 1;
+            }
+            if (mipHeight > 1)
+            {
+                mipHeight >>= 1;
+            }
 		}
 
 		*a_piEncodingTime_ms = totalEncodingTime;

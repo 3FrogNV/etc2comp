@@ -162,7 +162,7 @@ int main(int argc, const char * argv[])
 
 		// Calculate the maximum number of possible mipmaps
 		{
-			int dim = (uiSourceWidth < uiSourceHeight)?uiSourceWidth:uiSourceHeight;
+			int dim = (uiSourceWidth < uiSourceHeight)?uiSourceHeight:uiSourceWidth;
 			int maxMips = 0;
 			while(dim >= 1)
 			{
@@ -651,7 +651,7 @@ bool Commands::ProcessCommandLineArguments(int a_iArgs, const char *a_apstrArgs[
 					if (pstrOutputFilename[c] == ETC_PATH_SLASH)
 					{
 						c++;
-						ptrOutputDir = new char[c];
+						ptrOutputDir = new char[c+1];
 						strncpy(ptrOutputDir, pstrOutputFilename, c);
 						ptrOutputDir[c] = '\0';
 						CreateNewDir(ptrOutputDir);
